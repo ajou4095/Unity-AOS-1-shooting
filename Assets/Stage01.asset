@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: DefaultVolumeProfile
+  m_Script: {fileID: 11500000, guid: cf9574a9c6cfa1048a493a019d6f7643, type: 3}
+  m_Name: Stage01
   m_EditorClassIdentifier: 
-  components: []
+  limitMin: {x: -2.6, y: -4.6}
+  limitMax: {x: 2.6, y: 4.6}
