@@ -5,11 +5,15 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private StageData stageData;
+    [SerializeField]
+    private KeyCode keyCodeAttack = KeyCode.Z;
     private Movement2D movement2D;
+    private Weapon weapon;
 
     private void Awake()
     {
         movement2D = GetComponent<Movement2D>();
+        weapon = GetComponent<Weapon>();
     }
 
     // Update is called once per frame
@@ -17,15 +21,17 @@ public class PlayerController : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        Boolean isSlow = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        bool isSlow = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-        if (isSlow)
+        movement2D.MoveTo(isSlow ? new Vector2(x * 0.4f, y * 0.4f) : new Vector2(x, y));
+
+        if (Input.GetKeyDown(keyCodeAttack))
         {
-            movement2D.MoveTo(new Vector2(x * 0.4f, y * 0.4f));
+            weapon.StartFiring();
         }
-        else
+        else if (Input.GetKeyUp(keyCodeAttack))
         {
-            movement2D.MoveTo(new Vector2(x, y));
+            weapon.StopFiring();
         }
     }
 
