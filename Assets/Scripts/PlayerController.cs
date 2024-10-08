@@ -17,8 +17,16 @@ public class PlayerController : MonoBehaviour
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
+        Boolean isSlow = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-        movement2D.MoveTo(new Vector2(x, y));
+        if (isSlow)
+        {
+            movement2D.MoveTo(new Vector2(x * 0.4f, y * 0.4f));
+        }
+        else
+        {
+            movement2D.MoveTo(new Vector2(x, y));
+        }
     }
 
     private void LateUpdate()
